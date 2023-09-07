@@ -1,11 +1,8 @@
-% Code for calculating the trends using long-term averages by distance.
-% Calculates trends for total, geostrophic and reference transport 
-% averaged per month and transport averaged per year. Trends are evaluated 
-% using two different methods:
-% least-squares fit (ordinary and weighted for monthly and annual averages)
-% and the Thein-Seil estimator. Confidence limits of trends are calculated
+% Code for calculating trends in net total, geostrophic and reference 
+% Drake Passage transport. Trends are estimated using least-squares after 
+% removing the seasonal variability (annual+semiannual harmocis). CI are calculated
 % using the t-student distribution at 95% confidence (least-squares fit)
-% and the modified Mann-Kendall test. 
+% and the significance test is estimated after the modified Mann-Kendall test. 
 %
 %
 % 2022/10/05 - Manuel O. Gutierrez-Villanueva

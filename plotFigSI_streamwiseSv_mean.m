@@ -1,4 +1,4 @@
-% Code for plotting Figure 5 - Time series transport per pair of 
+% Code for plotting time series of transport per pair of 
 % Streamline. Time series of total, geostrophic and reference transport are
 % estimated per pair of SSH streamlines. SSH intervals for the frontal
 % regions are defined in Gutierrez-Villanueva et al. (2020). 
