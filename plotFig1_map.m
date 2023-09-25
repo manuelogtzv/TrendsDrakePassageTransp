@@ -77,7 +77,7 @@ for i = 1:length(indsouth);
 end
 os38 = lmgdata;
 
-load('./Datasets/geosbarocDP_noaver.mat'); %xbt lines
+load('./Datasets/geostrophic_noaver.mat'); %xbt lines
 load('./Datasets/omgeosvel_nb150.mat'); %mean geostrophic vel
 
 % Renames T, S, gamma and other variables
