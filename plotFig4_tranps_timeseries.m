@@ -10,8 +10,7 @@
 clear all;
 close all;
 
-% pycmd = '/Users/manuelgutierrez/anaconda3/bin/python';
-
+load ./colormaps/Fig4_cmap.mat
 
 % Define variables
 datein = datenum(1996, 01, 01, 0, 0 ,0);
@@ -29,9 +28,6 @@ colticks3 = [-6:1:6];
 % cmap2 = getPyPlot_cMap('seismic', length(colticks2)-1, [], pycmd);
 % cmap3 = getPyPlot_cMap('seismic', length(colticks3)-1, [], pycmd);
 timeticks = datenum(2004:2:2020, 1, 1);
-
-% Loads colormaps
-load ./colormaps/Fig4_cmap.mat
 
 din1 = datenum(1999, 11, 1);
 din2 = datenum(2005, 10, 1);
@@ -85,6 +81,12 @@ ind_gbci = ta1(abs(a-b)<=3);
 ind_ref = ta2(abs(a-b)<=3);
 
 totsum = [ref.transp(:, ind_ref) + geos.transp(:, ind_gbci)]*1e-6;
+
+% % Gets only those total transp transects with a coincident xbt transect
+% [c d] = meshgrid(geos.time, tot.time);
+% [tc1 tc2] = meshgrid(1:length(geos.time), 1:length(tot.time));
+% ind_tot2 = tc2(abs(c-d)<=3);
+% ind_geo2 = tc1(abs(c-d)<=3);
 
 % Loads coincident transects list
 listcoin = load('./Datasets/coinc_xbt_adcp_trans.txt');

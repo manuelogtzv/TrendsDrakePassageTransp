@@ -15,7 +15,6 @@
 clear all;
 close all;
 
-% pycmd = '/Users/manuelgutierrez/anaconda3/bin/python';
 
 
 % Contours and colormaps
@@ -43,11 +42,8 @@ gamma = 1;
 season_opt = 1;
 
 % Loads baroclinic velocities
-load(['./Datasets/geosbarocDP_noaver.mat']);
-% geosbaroc.u = geosbaroc.u(:, 1:end-1, :);
-% distubci = 0.5*(geosbaroc.dist(1:end-1, :) + ...
-%             geosbaroc.dist(2:end, :));
-% distubci = distubci - distubci(1, :);
+load(['./Datasets/geostrophic_noaver.mat']);
+
 
 % Renames T, S, gamma and other variables
 sal = geosbaroc.sal(:, 1:end-1, :);

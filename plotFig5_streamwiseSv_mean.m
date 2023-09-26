@@ -16,13 +16,12 @@ ndays = 19;
 
 load(['./Datasets/Streamwise_binning_geos.mat']);
 geos = stream;
-load(['./Datasets/treamwise_binning_os38nb.mat']);
+load(['./Datasets/Streamwise_binning_os38nb.mat']);
 tot = stream;
 load(['./Datasets/Streamwise_binning_ref.mat']);
 ref = stream;
 clear stream
 
-% pycmd = '/Users/manuelgutierrez/anaconda3/bin/python';
 
 alpha = 0.05;
 ti = datenum(2005, 10, 1);

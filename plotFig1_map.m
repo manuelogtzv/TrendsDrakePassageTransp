@@ -11,7 +11,6 @@ close all;
 % Loads palette for bathymetry
 load('./colormaps/gmt_palette.mat');
 adtcolor = map1(1:end-1,:);
-% pycmd = '/Users/manuelgutierrez/anaconda3/bin/python';
 S_unique = [-1.75:0.05:-0.30];
 
 
@@ -24,12 +23,8 @@ cont_vel = [-50:5:50];
 % cmap_pt = flipud(getPyPlot_cMap('RdYlBu', length(cont_pt)-1, [], pycmd));
 % cmap_vel = getPyPlot_cMap('seismic', length(cont_vel)-1, [], pycmd);
 % cmap_ssh = flipud(cmocean('deep', length(S_unique)-1));
-% cont_sal_std = [0:0.01:0.11];
-% cmap_sal_std = viridis(length(cont_sal_std)-1);
-% cont_pt_std = [0:0.2:1.7];
-% cmap_pt_std = plasma(length(cont_pt_std)-1);
-%cmap_ssh = (getPyPlot_cMap('ocean', length(S_unique)-1, [], pycmd));%
-%cmap_ssh = flipud(viridis(length(S_unique)-1));
+% cmap_ssh = (getPyPlot_cMap('ocean', length(S_unique)-1, [], pycmd));%
+% cmap_ssh = flipud(viridis(length(S_unique)-1));
 
 % Loads colormaps
 load ./colormaps/Fig1_cmap.mat

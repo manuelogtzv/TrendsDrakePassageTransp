@@ -10,7 +10,6 @@
 clear all;
 close all;
 
-% pycmd = '/Users/manuelgutierrez/anaconda3/bin/python';
 
 % Define variables
 datein = datenum(1996, 01, 01, 0, 0 ,0);
@@ -103,13 +102,6 @@ ugeosref_760_2 = geosref_760.u(:, :, geosref_760.time>=din2 & ...
     geosref_760.time<=dfin1);
 timegeosref_760_2 = geosbci_760.time(1, geosref_760.time>=din2 & ...
     geosref_760.time<=dfin1);
-
-
-% Finds coincident xbt and adcp transects
-% os38nb 
-% [x y] = meshgrid(timegeosbci_760, timetotal_760);
-% [t1 t2] = meshgrid(1:length(timegeosbci_760), 1:length(timetotal_760));
-% ind_tot_a = t2(abs(x-y)<=4);
 
 % Loads coincident transects list
 listcoin = load('./Datasets/coinc_xbt_adcp_trans.txt');

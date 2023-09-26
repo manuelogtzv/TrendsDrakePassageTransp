@@ -10,7 +10,6 @@
 clear all;
 close all;
 
-% pycmd = '/Users/manuelgutierrez/anaconda3/bin/python';
 
 % Loads data
 load ./Datasets/TrendsERA5_1996_2019_monthly.mat

@@ -13,8 +13,6 @@
 clear all;
 close all;
 
-% pycmd = '/Users/manuelgutierrez/anaconda3/bin/python';
-
 % Define variables
 datein = datenum(1996, 01, 01, 0, 0 ,0);
 alpha = 0.05;
@@ -28,9 +26,9 @@ dfin1 = datenum(2019, 4, 30);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% Loads os38 data %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Loads transport
-load('./Datasets/TransportDP_adcp_os38nbmaxz780_2.mat'); %os38nb
-tot = transpDP;
-tot.tottransp = tot.tottransp';
+load('./Datasets/TotalTransport_os38nbmaxz_760_2.mat'); %os38nb
+tot = totaltransp;
+% tot.nettransp = tot.nettransp';
 tot.transpdist = diff(tot.cumtransp);
 
 if op_mostreptran == 1;
@@ -69,8 +67,8 @@ end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% GEOSTROPHIC %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Removes incomplete transects
-load('./Datasets/TransportDP_baroc_noaverg.mat'); %baroclinic
-geo = barocDP; 
+load('./Datasets/geostrophic_noaver.mat'); 
+geo = geosbaroc; 
 geo.transpdist(:, isnan(geo.cumtransp(1, :))) = NaN;
 geo.dist(:, find(isnan(geo.cumtransp(1, :))==1)-1) = NaN;
 geo.meandist = nanmean(geo.dist, 2);
@@ -79,35 +77,33 @@ clear barocDP transpDP;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% REFERENCE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-load('./Datasets/ReferenceTransp_DP.mat');
-ref = transpref;
-ref.time_os38 = ref.time_os38(1, ...
-    ref.time_os38>datenum(2005, 1, 1));
-ref.transp_os38 = ref.transp_os38(1, ...
-    ref.time_os38>datenum(2005, 1, 1));
-ref.transp_os38_2 = ref.transp_os38_2(1, ...
-    ref.time_os38>datenum(2005, 1, 1));
-clear transpref
+load('./Datasets/reference_os38nb_760.mat');
+ref = geosref;
+% ref.nettransp = ref.nettransp(1, ...
+%     ref.time>datenum(2005, 1, 1));
+% ref.time = ref.time(1, ...
+%     ref.time>datenum(2005, 1, 1));
+clear geosref
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Renames variables for simplicity
 % os38
-tot760 = tot.tottransp(tot.time>=din2 & ...
+tot760 = tot.nettransp(tot.time>=din2 & ...
     tot.time<=dfin1);
 timetot760 = tot.time(tot.time>=din2 & ...
     tot.time<=dfin1);
 
 % geostrophic
-geo760 = geo.transp(1, geo.time>=din2 & ...
+geo760 = geo.nettransp(1, geo.time>=din2 & ...
     geo.time<=dfin1);
 timegeo760 = geo.time(1, geo.time>=din2 & ...
     geo.time<=dfin1);
 
 % reference
-ref760 = ref.transp_os38(1, ref.time_os38>=din2 & ...
-    ref.time_os38<=dfin1);
-timeref760 = ref.time_os38(1, ref.time_os38>=din2 & ...
-    ref.time_os38<=dfin1);
+ref760 = ref.nettransp(1, ref.time>=din2 & ...
+    ref.time<=dfin1);
+timeref760 = ref.time(1, ref.time>=din2 & ...
+    ref.time<=dfin1);
 
 
 % Finds coincident xbt and adcp transects
@@ -137,26 +133,26 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%% Trends %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Geostrophic
 [tr_geo conf_geo sigtls_geo trnp_geo signp_geo] = ...
-    calctrends(geo.transp*1e-6, [geo.time-datein]/365.25, alpha, season_opt);
+    calctrends(geo.nettransp*1e-6, [geo.time-datein]/365.25, alpha, season_opt);
 [tr_geo_1 conf_geo_1 sigtls_geo_1 trnp_geo_1 signp_geo_1] = ...
     calctrends(geo760*1e-6, [timegeo760-datein]/365.25, alpha, season_opt);
 
 
 % Reference 
 [tr_ref conf_ref sigtls_ref trnp_ref signp_ref] = ...
-    calctrends(ref.transp_os38, [ref.time_os38-datein]/365.25, alpha, season_opt);
+    calctrends(ref.nettransp, [ref.time-datein]/365.25, alpha, season_opt);
 
 
 % Total
 [tr_tot conf_tot sigtls_tot trnp_tot signp_tot] = ...
-    calctrends(tot.tottransp*1e-6, [tot.time-datein]/365.25, alpha, season_opt);
+    calctrends(tot.nettransp*1e-6, [tot.time-datein]/365.25, alpha, season_opt);
 [tr_tot_1 conf_tot_1 sigtls_tot_1 trnp_tot_1 signp_tot_1] = ...
     calctrends(tot760*1e-6, [timetot760-datein]/365.25, alpha, season_opt);
 [tr_tot_2 conf_tot_2 sigtls_tot_2 trnp_tot_2 signp_tot_2] = ...
     calctrends(tot760(ind_tot(:))*1e-6, ...
     [timetot760(ind_tot(:))-datein]/365.25, alpha, season_opt);
 [tr_tot_3 conf_tot_3 sigtls_tot_3 trnp_tot_3 signp_tot_3] = ...
-    calctrends(tot.tottransp(indr)*1e-6, ...
+    calctrends(tot.nettransp(indr)*1e-6, ...
     [tot.time(indr)-datein]/365.25, alpha, season_opt);
 
 
@@ -189,9 +185,9 @@ b1 = plot(2, tr_geo, '^k', 'markersize', 6, 'markerfacecolor', 'none');
 errorbar(2, tr_geo_1, conf_geo_1, 'k', 'linewidth', 1); 
 b2 = plot(2, tr_geo_1, 'sk', 'markersize', 6, 'markerfacecolor', 'none');
 
-errorbar(3, tr_ref, conf_ref*1e-1, 'b', 'linewidth', 1); 
+errorbar(3, tr_ref*1e-6, conf_ref*1e-6, 'b', 'linewidth', 1); 
 hold on;
-c1 = plot(3, tr_ref*1e-1, 'sb', 'markersize', 6, 'markerfacecolor', 'none');
+c1 = plot(3, tr_ref*1e-6, 'sb', 'markersize', 6, 'markerfacecolor', 'none');
 
 axis(ha(1), [0.5 4.5 -0.38 0.38]);
 ax = axis;

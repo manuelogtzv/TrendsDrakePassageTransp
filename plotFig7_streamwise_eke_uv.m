@@ -55,7 +55,7 @@ S_unique = -[0.20 0.30 0.40 0.50 0.60 0.70 0.80 0.90...
         1.0 1.15 1.25 1.35 1.45 1.50 1.55 1.60 1.65 1.70];
 
 %%%% Loads datasets %%%%
-load ./Datasets/Streamwise_binning_ekeref_18days.mat
+load ./Datasets/Streamwise_binning_eke.mat
 
 Zmax = 798;
 
