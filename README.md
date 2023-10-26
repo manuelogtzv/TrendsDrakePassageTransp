@@ -1,9 +1,13 @@
 # Trends in Drake Passage Transport and properties
-Repository with data sets and code for recreating results of Nature Communications paper titled "Compensating transport trends in the Drake Passage frontal regions yield no acceleration in net transport". Directories Codes and Datasets contain the auxiliary codes and ancillary datasets to run the main routines. Main routines calculate all variables of interest and plot the results. 
+Repository with data sets and code for recreating results of Nature Communications paper titled "Compensating transport trends in the Drake Passage frontal regions yield no acceleration in net transport". Directories Codes and Datasets contain the auxiliary codes and ancillary datasets to run the main routines. Main routines calculate all variables of interest and plot the results. DOI: https://doi.org/10.5281/zenodo.10044253
 
-DOI: 10.5281/zenodo.10044253
+
+DATASETS USED FOR ESTIMATING TIME SERIES AND TRENDS ARE AVAILABLE AT: https://doi.org/10.5281/zenodo.10044261
+
+
 
 Codes to generate datasets are in Codes_calc_var:
+
 a) geosbaroc_xbtxctd.m: Code to get XBT/XCTD transects and generate a .mat file with temperature, salinity, and geostrophic velocity and transport.
 
 b) transectsLMG.m: Code to fill gasp in cross-transect velocity component from ADCP transects. Generates 25-km datasets. Important: time series are not corrected due to misalignment (see methods).
