@@ -6,16 +6,14 @@
 clear all;
 close all;
 
-pycmd = '/Users/manuelgutierrez/anaconda3/bin/python';
-
 % Parameters
 gsize = 25; %km
 cont = [-1.0:0.1:1.0];%vel contours
 contmaperr = [0:0.1:0.5];%mapping error contours
 decorr_x = 50000; %meters distance
 error = 0.2;
-cmap = getPyPlot_cMap('seismic', length(cont)-1, [], pycmd);
-cmaperr = flipud(getPyPlot_cMap('pink', length(contmaperr)-1, [], pycmd));
+% cmap = getPyPlot_cMap('seismic', length(cont)-1, [], pycmd);
+% cmaperr = flipud(getPyPlot_cMap('pink', length(contmaperr)-1, [], pycmd));
 % cmaperrvar = flipud(getPyPlot_cMap('YlGnBu', length(contmaperr)-1));
 
 
