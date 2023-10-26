@@ -3,11 +3,17 @@ Repository with data sets and code for recreating results of Nature Communicatio
 
 Codes to generate datasets are in Codes_calc_var:
 a) geosbaroc_xbtxctd.m: Code to get XBT/XCTD transects and generate a .mat file with temperature, salinity, and geostrophic velocity and transport.
+
 b) transectsLMG.m: Code to fill gasp in cross-transect velocity component from ADCP transects. Generates 25-km datasets. Important: time series are not corrected due to misalignment (see methods).
+
 c) totalTransp.m: Code to calculate total transport time series. Important: total velocity is corrected due to transducer misalignment angle before estimating transport.
+
 d) baroc_barot_vel.m: Code to calculate reference velocity, and reference and Ekman transport time series.
+
 e) windstresscurl.m: Code to calculate wind stress and wind stress curl time series. Also, calculate trends in wind stress curl. Important: takes minutes to calculate variables.
+
 f) sshbinning_transp.m: Code to calculate time series of total, geostrophic, or reference transport time series per pair of sea surface height. Important: in adcp use either 'os38nb', 'geos', or 'ref' each time the code is run.
+
 g) calc_eke_uvprime.m: Calculate time series of eddy kinetic energy (EKE) and eddy momentum flux (EMF).
 
 
